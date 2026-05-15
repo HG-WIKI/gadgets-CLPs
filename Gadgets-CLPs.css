@@ -1,4 +1,4 @@
-/* ========== HOME WIDGETS - ESTILO POPULAR POSTS (como la imagen) ========== */
+/* ========== HOME WIDGETS - ESTILO POPULAR POSTS (horizontal con grid) ========== */
 .home_widgets2,
 .home_widgets3 {
     width: 100%;
@@ -7,47 +7,52 @@
     clear: both;
 }
 
-/* Contenedor en columna (vertical) en lugar de grid horizontal */
+/* Contenedor en GRID horizontal como popular posts */
 .home_widgets2 .content,
 .home_widgets3 .content {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     gap: 20px;
     width: 95%;
-    max-width: 900px;
+    max-width: 1200px;
     margin: 0 auto;
+    padding: 0;
 }
 
-/* Cada item estilo "Popular Post" - tarjeta horizontal */
+/* Cada item estilo "Popular Post" - tarjeta VERTICAL (como popular posts) */
 .home_widgets2 .featured-post,
 .home_widgets3 .featured-post {
     display: flex;
-    flex-direction: row;
-    gap: 18px;
-    align-items: flex-start;
-    background: transparent;
-    padding: 0 0 18px 0;
-    border-bottom: 1px solid #e8e5df;
-    transition: all 0.2s ease;
-}
-
-.home_widgets2 .featured-post:last-child,
-.home_widgets3 .featured-post:last-child {
+    flex-direction: column;
+    width: calc(25% - 15px);
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 0;
+    margin: 0;
     border-bottom: none;
-    padding-bottom: 0;
 }
 
-/* Imagen / miniatura - cuadrada como en la imagen */
+.home_widgets2 .featured-post:hover,
+.home_widgets3 .featured-post:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Imagen / miniatura - como popular posts (arriba del todo) */
 .home_widgets2 .featured-post img,
 .home_widgets3 .featured-post img {
-    width: 110px !important;
-    height: 85px !important;
-    min-height: 85px !important;
+    width: 100% !important;
+    height: 160px !important;
+    min-height: 160px !important;
     object-fit: cover;
-    border-radius: 8px;
+    border-radius: 0 !important;
     display: block;
     flex-shrink: 0;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    box-shadow: none !important;
+    margin: 0 !important;
 }
 
 /* Contenedor del texto */
@@ -56,10 +61,11 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 8px;
+    padding: 15px;
 }
 
-/* Título - como en la imagen: negrita, tamaño adecuado */
+/* Título - como popular posts */
 .home_widgets2 .featured-post h3,
 .home_widgets3 .featured-post h3,
 .home_widgets2 .featured-post .entry-title,
@@ -67,23 +73,22 @@
     position: static !important;
     width: auto !important;
     padding: 0 !important;
-    margin: 0 !important;
-    color: #1a2a3a !important;
+    margin: 0 0 8px 0 !important;
+    color: #222 !important;
     background: transparent !important;
     font-family: 'Segoe UI', 'Arial', sans-serif !important;
-    font-size: 17px !important;
+    font-size: 16px !important;
     font-weight: 700 !important;
-    line-height: 1.4 !important;
+    line-height: 1.3 !important;
     text-shadow: none !important;
     display: block !important;
-    -webkit-line-clamp: unset !important;
 }
 
 .home_widgets2 .featured-post h3 a,
 .home_widgets3 .featured-post h3 a,
 .home_widgets2 .featured-post .entry-title a,
 .home_widgets3 .featured-post .entry-title a {
-    color: #1a2a3a !important;
+    color: #222 !important;
     text-decoration: none;
     transition: color 0.2s;
 }
@@ -96,12 +101,12 @@
     text-decoration: underline;
 }
 
-/* Extracto / snippet (como en la imagen) */
+/* Extracto / snippet - como popular posts */
 .home_widgets2 .featured-post .snippet,
 .home_widgets3 .featured-post .snippet {
-    font-size: 13.5px;
-    color: #5a5a5a;
-    line-height: 1.5;
+    font-size: 13px;
+    color: #666;
+    line-height: 1.4;
     margin: 0;
     display: -webkit-box;
     -webkit-line-clamp: 3;
@@ -109,62 +114,63 @@
     overflow: hidden;
 }
 
-/* Eliminar el overlay/gradiente que ya no se necesita */
+/* Eliminar bordes y decoraciones antiguas */
 .home_widgets2 .featured-post::after,
 .home_widgets3 .featured-post::after {
     display: none !important;
 }
 
-/* ========== RESPONSIVE - MÓVIL ========== */
-@media screen and (max-width: 650px) {
+/* ========== RESPONSIVE - TABLET (2 columnas) ========== */
+@media screen and (max-width: 768px) {
     .home_widgets2 .featured-post,
     .home_widgets3 .featured-post {
+        width: calc(50% - 10px);
         flex-direction: column;
-        gap: 12px;
-        padding-bottom: 20px;
+    }
+    
+    .home_widgets2 .featured-post img,
+    .home_widgets3 .featured-post img {
+        height: 150px !important;
+        min-height: 150px !important;
+    }
+    
+    .home_widgets2 .content,
+    .home_widgets3 .content {
+        width: 95%;
+        gap: 15px;
+    }
+}
+
+/* ========== RESPONSIVE - MÓVIL (1 columna) ========== */
+@media screen and (max-width: 480px) {
+    .home_widgets2 .featured-post,
+    .home_widgets3 .featured-post {
+        width: 100%;
+        flex-direction: column;
     }
     
     .home_widgets2 .featured-post img,
     .home_widgets3 .featured-post img {
         width: 100% !important;
-        height: auto !important;
-        max-height: 200px;
-        min-height: auto !important;
-        object-fit: cover;
+        height: 180px !important;
+        min-height: 180px !important;
     }
     
     .home_widgets2 .featured-post h3,
     .home_widgets3 .featured-post h3,
     .home_widgets2 .featured-post .entry-title,
     .home_widgets3 .featured-post .entry-title {
-        font-size: 16px !important;
+        font-size: 15px !important;
+    }
+    
+    .home_widgets2 .featured-post .snippet,
+    .home_widgets3 .featured-post .snippet {
+        font-size: 12px !important;
+        -webkit-line-clamp: 2 !important;
     }
     
     .home_widgets2 .content,
     .home_widgets3 .content {
-        width: 90% !important;
-        gap: 15px;
-    }
-}
-
-/* ========== TABLETS ========== */
-@media screen and (min-width: 651px) and (max-width: 1024px) {
-    .home_widgets2 .featured-post img,
-    .home_widgets3 .featured-post img {
-        width: 100px !important;
-        height: 80px !important;
-    }
-    
-    .home_widgets2 .featured-post h3,
-    .home_widgets3 .featured-post h3,
-    .home_widgets2 .featured-post .entry-title,
-    .home_widgets3 .featured-post .entry-title {
-        font-size: 16px !important;
-    }
-    
-    .home_widgets2 .snippet,
-    .home_widgets3 .snippet {
-        font-size: 12px !important;
-        -webkit-line-clamp: 2 !important;
+        width: 90%;
     }
 }
